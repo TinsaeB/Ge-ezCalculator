@@ -26,16 +26,26 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ttbzrs.geezcalculator.ui.theme.GeezCalculatorTheme
+// ... (other imports)
+import androidx.compose.runtime.collectAsState
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collect
 
 class MainActivity : ComponentActivity() {
     private var textToSpeechEngine: TextToSpeechEngine? = null
+    private lateinit var dataStoreManager: DataStoreManager // Add DataStoreManager
 
     @RequiresApi(35)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         textToSpeechEngine = TextToSpeechEngine(this)
+        dataStoreManager = DataStoreManager(this) // Initialize
+
         setContent {
-            var isDarkMode by remember { mutableStateOf(false) }
+            // Collect the flow as state
+            val isDarkMode by dataStoreManager.isDarkMode.collectAsState(initial = false) // Initial value
+            val coroutineScope = rememberCoroutineScope() // Use rememberCoroutineScope
+
             GeezCalculatorTheme(darkTheme = isDarkMode) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -44,7 +54,12 @@ class MainActivity : ComponentActivity() {
                     Column {
                         Switch(
                             checked = isDarkMode,
-                            onCheckedChange = { isDarkMode = it },
+                            onCheckedChange = { checked ->
+                                // Use a coroutine to update DataStore
+                                coroutineScope.launch {
+                                    dataStoreManager.setDarkMode(checked)
+                                }
+                            },
                             modifier = Modifier.padding(16.dp)
                         )
                         CalculatorApp(textToSpeechEngine)

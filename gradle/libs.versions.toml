@@ -1,0 +1,39 @@
+[versions]
+kotlin = "1.9.0"
+android-gradle-plugin = "8.5.2"
+androidx-core-ktx = "1.12.0"
+androidx-lifecycle-runtime-ktx = "2.8.7"
+androidx-activity-compose = "1.9.3"
+androidx-compose-bom = "2024.12.01"
+androidx-ui = { module = "androidx.compose.ui:ui" }
+androidx-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+androidx-material3 = { module = "androidx.compose.material3:material3" }
+junit = "4.13.2"
+androidx-junit = { module = "androidx.test.ext:junit", version = "1.2.0" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version = "3.6.0" }
+androidx-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+androidx-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+jna = "5.12.1"
+
+[libraries]
+androidx-core-ktx-v190 = { module = "androidx.core:core-ktx", version.ref = "androidx-core-ktx" }
+androidx-lifecycle-runtime-ktx-v262 = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime-ktx" }
+androidx-activity-compose-v181 = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity-compose" }
+androidx-compose-bom-v20230300 = { module = "androidx.compose:compose-bom", version.ref = "androidx-compose-bom" }
+ui = { module = "androidx.compose.ui:ui" }
+ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+material3 = { module = "androidx.compose.material3:material3" }
+junit = { module = "junit:junit", version.ref = "junit" }
+androidx-junit-v121 = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
+androidx-espresso-core-v361 = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-espresso-core" }
+ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+jna = { module = "net.java.dev.jna:jna", version.ref = "jna" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
